@@ -29,7 +29,7 @@ const searchText = (event) => {
  
             <div className="col-11 col-md-6 col-lg-3 mx-0 mb-4">
             <div className="card p-o overflow-hidden h-100 ">
-              <img src={item.img} className="card-img-top"   />
+              <img src={item.img} className="card-img-top" alt=""  />
               <div className="card-body">
                 <h5 className="card-title"> {item.title}</h5>
                 <p className="card-text"> {item.desc} </p>

@@ -3,6 +3,11 @@ import '../Styles/Searchbar.css'
 import Data from "../API/Api";
 import './ApiData'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import 'animate.css';
+
+
+
+
 
 const Search = () => {
 const [filter, setFilter] = useState("");
@@ -36,15 +41,26 @@ const searchText = (event) => {
         {dataSearch.map((item, index) => {
           return(
  
-            <div className="col-11 col-md-6 col-lg-3 mx-0 mb-4">
-            <div className="card p-o overflow-hidden h-100 ">
-              <img src={item.img} className="card-img-top"   />
-              <div className="card-body">
-                <h5 className="card-title"> {item.title}</h5>
-                <p className="card-text"> {item.desc} </p>
-              </div>
-            </div>
-          </div>
+          //   <div className="col-11 col-md-6 col-lg-3 mx-0 mb-4 animate__pulse"  key={index}>
+          //   <div className="card p-o overflow-hidden h-100  " key={index}>
+          //     <img src={item.img} className="card-img-top"  alt="" />
+          //     <div className="card-body"  key={index}>
+          //       <h5 className="card-title"> {item.title}</h5>
+          //       <p className="card-text"> {item.desc} </p>
+          //     </div>
+          //   </div>
+          // </div>
+<div className="card "  key={index}>
+  <img src={item.img} className="card-img-top" alt="..." />
+  <div className="card-body" key={index}>
+    <h5 className="card-title">{item.title}</h5>
+    <p className="card-text">{item.Price}</p>
+
+  <button type="button" className="btn sbtn ">Buy</button>
+ 
+
+  </div>
+</div>
 
           )
         

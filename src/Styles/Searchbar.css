@@ -8,8 +8,53 @@
   
   }
    
+/* This only changes this particular animation duration */
+.animate__animated.animate__bounce {
+  --animate-duration: 2s;
+}
+
+/* This changes all the animations globally */
+:root {
+  --animate-duration: 1800ms;
+  --animate-delay: 1.9s;
+}
 
 
 .sb{
     margin-left: 15rem important;
+    margin-bottom: 8rem;
+}
+
+.sb input{
+  width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card{
+
+  border: 1px solid var(--main-color);
+  width: 15.3rem;
+  margin: 1rem;
+}
+
+.card-img-top{
+  object-fit: contain;
+  
+}
+
+
+.row > * {
+  padding-right: calc(var(--bs-gutter-x) * 0.0);
+  padding-left: calc(var(--bs-gutter-x) * 0.0);
+}
+
+.btn {
+  border-top: 1px solid var(--main-color);
+  background-color: var(--main-color);
+
+}
+
+.sbtn{
+  width: 100%;
 }
