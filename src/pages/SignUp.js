@@ -30,7 +30,9 @@ const sendData = {
 
 console.log(sendData)
 
-axios.post('http://localhost/php-auth/auth.php',sendData).then((result)=>{
+axios.post('http://127.0.0.1/php-auth/auth.php',sendData) 
+
+.then((result)=>{
 
 if (result.data.Status === 'Invalid'){
   alert('Invalid User'); 
@@ -63,8 +65,10 @@ else{
             type="text"
             className="form-control"
             id="validationCustom01"
+            name ="first_name"
+            onChange={handleChange} 
+            value={data.first_name}
             required
-            onChange={handleChange} value={data.first_name}
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -78,8 +82,10 @@ else{
             type="text"
             className="form-control"
             id="validationCustom01"
+            name ="last_name"
             required
             onChange={handleChange} value={data.last_name}
+          
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -93,8 +99,10 @@ else{
             type="number"
             className="form-control"
             id="validationCustom01"
+            name ="Contact_number"
             required
             onChange={handleChange} value={data.Contact_number}
+         
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -106,8 +114,10 @@ else{
             type="password"
             className="form-control"
             id="validationCustom02"
+            name ="password"
             required
             onChange={handleChange} value={data.password}
+           
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -120,6 +130,7 @@ else{
               value=""
               id="invalidCheck"
               required
+             
             />
             <label className="form-check-label" htmlFor="invalidCheck">
               Agree to terms and conditions
@@ -130,12 +141,12 @@ else{
           </div>
         </div>
         <div className="col-12">
-          <button className="btn " type="submit">
+          <button className="btn " name="submit" type="submit">
             Submit form
           </button>
           <hr />
           <p> Already have an Account?</p>
-          <button className="btn " type="">
+          <button className="btn " type="" to ="/SignIn" >
             {" "}
             Sign in
           </button>
