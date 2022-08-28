@@ -22,7 +22,7 @@ const data = {
   last_name,
   Contact_number,
   password
-}
+};
 
 console.log(data)
 
@@ -34,7 +34,7 @@ axios.post('http://127.0.0.1:4000/SignUp',data, {withCredentials:true})
 
   return (
     <div className="auth">
-      <form className="row g-3 needs-validation" onSubmit={submitForm} noValidate>
+      <form className="row g-3 needs-validation" action="" onSubmit={e => submitForm(e)} noValidate>
         <div className="site-title">
           {" "}
           <img src={require("../logo.png")} alt="logo" />{" "}
