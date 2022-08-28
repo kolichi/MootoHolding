@@ -1,21 +1,34 @@
-import Navbar from "./Components/Navbar"
-import Footer from "./Components/Footer.jsx"
-import Services from "./pages/Services"
-import Home from "./pages/Home"
-import About from "./pages/About"
-import SignIn from "./pages/SignIn"
-import SignUp from "./pages/SignUp"
-import Tracking from "./pages/Tracking"
-import { Route, Routes } from "react-router-dom"
-import './Styles/index.css'
-
-
-
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer.jsx";
+import Services from "./pages/Services";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Tracking from "./pages/Tracking";
+import { BrowserRouter,Switch, Route, Routes, link } from "react-router-dom";
+import "./Styles/index.css";
+import UserContext from "./Components/userContext";
+import axios from "axios";
+import { React, useEffect, useState } from "react";
 
 function App() {
+  const [Contact_number, setNumber] = useState("");
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/user', {withCredentials:true} );
+  }, []);
+
+  
   return (
-    <>
+    <UserContext.Provider value={{ Contact_number, setNumber }}>
       <Navbar />
+
+      <div className="toast">
+        {!!Contact_number && <div> logged in as {Contact_number} </div>}
+        {!Contact_number && <div> NOT logged in as {Contact_number} </div>}
+      </div>
+
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -27,8 +40,8 @@ function App() {
         </Routes>
       </div>
       <Footer />
-    </>
-  )
+    </UserContext.Provider>
+  );
 }
 
-export default App
+export default App;

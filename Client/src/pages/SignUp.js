@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../Styles/Auth.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import userContext from "../Components/userContext";
 
 function SignUp() {
 
@@ -12,6 +12,7 @@ const [last_name,setLastName] = useState('')
 const [Contact_number,setNumber] = useState('') 
 const [password,setPassword] = useState('') 
 
+const user = useContext(userContext);
 
 
 function submitForm(e) {
@@ -26,11 +27,12 @@ const data = {
 
 console.log(data)
 
-axios.post('http://127.0.0.1:4000/SignUp',data, {withCredentials:true})
+axios.post('http://localHost:4000/SignUp',data, {withCredentials:true})
 
-.then(() =>{});
+.then(response =>{
+  user.setNumber(response.data.Contact_number);
+});
 }
-
 
   return (
     <div className="auth">
@@ -58,14 +60,14 @@ axios.post('http://127.0.0.1:4000/SignUp',data, {withCredentials:true})
         </div>
 
         <div className="col-md-4">
-          <label htmlFor="validationCustom01" className="form-label">
+          <label htmlFor="validationCustom02" className="form-label">
             {" "}
             Last Name{" "}
           </label>
           <input
             type="text"
             className="form-control"
-            id="validationCustom01"
+            id="validationCustom08"
             name ="last_name"
             required
             onChange={e=> setLastName(e.target.value) } 
@@ -76,14 +78,14 @@ axios.post('http://127.0.0.1:4000/SignUp',data, {withCredentials:true})
         </div>
 
         <div className="col-md-4">
-          <label htmlFor="validationCustom01" className="form-label">
+          <label htmlFor="validationCustom03" className="form-label">
             {" "}
             Phone Number
           </label>
           <input
             type="number"
             className="form-control"
-            id="validationCustom01"
+            id="validationCustom03"
             name ="Contact_number"
             required
             onChange={e=> setNumber(e.target.value) } 
@@ -93,13 +95,13 @@ axios.post('http://127.0.0.1:4000/SignUp',data, {withCredentials:true})
           <div className="valid-feedback">Looks good!</div>
         </div>
         <div className="col-md-4">
-          <label htmlFor="validationCustom02" className="form-label">
+          <label htmlFor="validationCustom04" className="form-label">
             Password
           </label>
           <input
             type="password"
             className="form-control"
-            id="validationCustom02"
+            id="validationCustom04"
             name ="password"
             required
             onChange={e=> setPassword(e.target.value) } 
