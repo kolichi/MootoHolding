@@ -27,10 +27,16 @@ const data = {
 
 console.log(data)
 
-axios.post('http://localHost:4000/SignUp',data, {withCredentials:true})
+axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
 
 .then(response =>{
   user.setNumber(response.data.Contact_number);
+   
+  setFirstName('');
+  setLastName('');
+  setNumber('');
+  setPassword('');
+
 });
 }
 

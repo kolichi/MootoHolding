@@ -24,13 +24,24 @@ function App() {
   
   }, []);
 
+function Logout (){
+
+  axios.post('http://logout:4000/logout', {}, {withCredentials:true})
+   
+  .then( () => setNumber('')
+  );
+
+}
+
 
   return (
     <UserContext.Provider value={{ Contact_number, setNumber }}>
       <Navbar />
 
       <div className="toast">
-        {!!Contact_number && <div> logged in as {Contact_number} </div>}
+        {!!Contact_number && <div> logged in as {Contact_number} 
+          <button onClick={() => Logout()}> LogOut </button>
+         </div>}
         {!Contact_number && <div> NOT logged in as {Contact_number} </div>}
       </div>
 

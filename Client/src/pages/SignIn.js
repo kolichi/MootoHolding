@@ -21,11 +21,10 @@ function SignIn() {
 
     console.log(data);
 
-    axios
-      .post("http://localHost:4000/SignIn", data, { withCredentials: true })
-
-      .then((response) => {
+    axios.post("http://localHost:4000/SignIn", data, { withCredentials: true }).then((response) => {
         user.setNumber(response.data.Contact_number);
+        setNumber('');
+        setPassword('');
       });
   }
 

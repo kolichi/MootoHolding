@@ -29,7 +29,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.send("ok");
+  res.send("server is conected");
 });
 
 app.get('/user', (req, res) => {
@@ -86,6 +86,10 @@ app.post('/SignIn', (req, res) => {
         }
     })
 });
+
+app.post('logout', (req, res) => {
+    res.cookie('token', '').send();
+})
 
 app.listen(4000);
 
