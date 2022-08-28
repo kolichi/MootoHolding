@@ -6,7 +6,7 @@ import About from "./pages/About";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Tracking from "./pages/Tracking";
-import { BrowserRouter,Switch, Route, Routes, link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./Styles/index.css";
 import UserContext from "./Components/userContext";
 import axios from "axios";
@@ -16,10 +16,15 @@ function App() {
   const [Contact_number, setNumber] = useState("");
 
   useEffect(() => {
-    axios.get('http://localhost:4000/user', {withCredentials:true} );
+    axios.get('http://localhost:4000/user', {withCredentials:true} )
+    
+    .then(responce => {
+      setNumber(responce.data.Contact_number)
+    })
+  
   }, []);
 
-  
+
   return (
     <UserContext.Provider value={{ Contact_number, setNumber }}>
       <Navbar />

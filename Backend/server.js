@@ -68,5 +68,24 @@ app.post("/SignUp", (req, res) => {
   });
 });
 
+app.post('/SignIn', (req, res) => {
+    const {Contact_number, password} =req.body;
+    User.findOne({Contact_number})
+    .then(userInfo => {
+        const passOk = bcrypt.compareSync(password, userInfo.password);
+
+        if (passOk) {
+            jwt.sign({id:userInfo._id, Contact_number}, secret, (err,token) => {
+                if (err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                  } else {
+                    res.cookie('token', token).json({id:userInfo._id, Contact_number:userInfo.Contact_number});
+                  }
+            })
+        }
+    })
+});
+
 app.listen(4000);
 
