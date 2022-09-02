@@ -6,11 +6,12 @@ import About from "./pages/About";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Tracking from "./pages/Tracking";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./Styles/index.css";
 import UserContext from "./Components/userContext";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
+
 
 function App() {
   const [Contact_number, setNumber] = useState("");
@@ -24,21 +25,23 @@ function App() {
   
   }, []);
 
-function Logout (){
+ function Logout (){
 
   axios.post('http://logout:4000/logout', {}, {withCredentials:true})
    
   .then( () => setNumber('')
   );
 
-}
+} 
 
 
   return (
     <UserContext.Provider value={{ Contact_number, setNumber }}>
+
+      
       <Navbar />
 
-      <div className="toast">
+     <div className="toast">
         {!!Contact_number && <div> logged in as {Contact_number} 
           <button onClick={() => Logout()}> LogOut </button>
          </div>}
@@ -56,6 +59,7 @@ function Logout (){
         </Routes>
       </div>
       <Footer />
+   
     </UserContext.Provider>
   );
 }

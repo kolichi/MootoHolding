@@ -3,6 +3,7 @@ import "../Styles/Auth.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import userContext from "../Components/userContext";
+import { Link } from "react-router-dom";
 
 function SignIn() {
 
@@ -95,9 +96,11 @@ function SignIn() {
             Submit form
           </button>
           <hr />
+          <Link to="/SignUp">                      
           <button className="btn ">
             Sign Up
           </button>
+          </Link>
         </div>
       </form>
     </div>

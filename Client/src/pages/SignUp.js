@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,  } from "react";
+import { Link } from "react-router-dom";
 import "../Styles/Auth.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
@@ -120,7 +121,7 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
         <div className="col-12">
           <div className="form-check">
             <input
-              className="form-check-input"
+              className="form-check-input tick"
               type="checkbox"
               value=""
               id="invalidCheck"
@@ -141,10 +142,16 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
           </button>
           <hr />
           <p> Already have an Account?</p>
-          <button className="btn " type="" to ="/SignIn" >
+          <Link to="/SignIn">
+
+
+
+          <button className="btn " type=""  >
             {" "}
             Sign in
           </button>
+          </Link>
+        
         </div>
       </form>
     </div>
