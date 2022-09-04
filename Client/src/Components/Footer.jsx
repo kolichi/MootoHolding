@@ -23,7 +23,7 @@ const footer = () => {
      
      <div className="footer__socials">
 
-      <small> &copy; MOOTOHOLDINGS TECHNOLOGIES. ALL RIGHTS RESERVED 2022 </small>
+      <small> &copy; MOOTOHOLDINGS. ALL RIGHTS RESERVED 2022 </small>
      
      </div>
 
