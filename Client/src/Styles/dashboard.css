@@ -1,0 +1,40 @@
+:root {
+    --main-color: #4acc83;
+  
+    --Second-color: #e4da30;
+  
+    --Alternative-color: #404040;
+  }
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: black;
+    background-color: var(--main-color);
+  }
+
+.tablogo{
+    width: 4rem;
+    height: 4rem;
+    margin-left: 2rem;
+}
+
+.me-3{
+    border-right: 4px solid var(--Second-color);
+
+}
+
+  .table{
+    width: 380%;
+  }
+
+.nav-link{
+color: black;
+
+}
+
+.nav-link:hover{
+    color: var(--Alternative-color);
+}
+
+.nav-link:active{
+    background-color: var(--main-color);
+    color: black;
+}

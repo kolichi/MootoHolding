@@ -11,7 +11,7 @@ export default function Tracking() {
     </label>
     <input
       type="string"
-      className="form-control"
+      className="form-control track"
       id="validationCustom010"
       name ="password"
       required
@@ -23,6 +23,9 @@ export default function Tracking() {
 type="submit">
   Track
 </button>
+<br/>
+<br/>
+<br/>
      
   </form> 
   );

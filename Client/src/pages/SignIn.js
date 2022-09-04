@@ -6,13 +6,12 @@ import userContext from "../Components/userContext";
 import { Link } from "react-router-dom";
 
 function SignIn() {
-
   const [Contact_number, setNumber] = useState("");
   const [password, setPassword] = useState("");
 
   const user = useContext(userContext);
 
-  function LoginUser(e) {
+  const handleLogn = (e) => {
     e.preventDefault();
 
     const data = {
@@ -22,18 +21,27 @@ function SignIn() {
 
     console.log(data);
 
-    axios.post("http://localHost:4000/SignIn", data, { withCredentials: true }).then((response) => {
+    axios
+      .post("http://localHost:4000/SignIn", data, { withCredentials: true })
+      .then((response) => {
         user.setNumber(response.data.Contact_number);
-        setNumber('');
-        setPassword('');
+        setNumber("");
+        setPassword("");
+        if(response.status===200){
+          window.location.replace('/')
+        }else if(response.status===401){
+          console.log('incorrect credentials')
+         
+        }
       });
-  }
+  };
+ 
 
   return (
     <div id="from" className="auth">
       <form
         className="row g-3 needs-validation"
-        onSubmit={(e) => LoginUser(e)}
+        // onSubmit={(e) => LoginUser(e)}
         noValidate
       >
         <div className="site-title">
@@ -50,9 +58,9 @@ function SignIn() {
             type="number"
             className="form-control"
             id="validationCustom01"
-            name ="Contact_number"
+            name="Contact_number"
             required
-            onChange={e=> setNumber(e.target.value) } 
+            onChange={(e) => setNumber(e.target.value)}
             value={Contact_number}
           />
           <div className="valid-feedback">Looks good!</div>
@@ -65,11 +73,10 @@ function SignIn() {
             type="password"
             className="form-control"
             id="validationCustom02"
-            name ="password"
+            name="password"
             required
-            onChange={e=> setPassword(e.target.value) } 
+            onChange={(e) => setPassword(e.target.value)}
             value={password}
-           
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -92,14 +99,12 @@ function SignIn() {
           </div>
         </div>
         <div className="col-12">
-          <button className="btn " type="submit">
+          <button className="btn " type="submit" onClick={(e) => handleLogn(e)}>
             Submit form
           </button>
           <hr />
-          <Link to="/SignUp">                      
-          <button className="btn ">
-            Sign Up
-          </button>
+          <Link to="/SignUp">
+            <button className="btn ">Sign Up</button>
           </Link>
         </div>
       </form>

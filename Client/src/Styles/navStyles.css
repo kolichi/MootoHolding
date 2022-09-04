@@ -61,11 +61,13 @@ body {
 
 .nav-link{
   border: dashed 2px var(--Alternative-color);
-  margin:0 1rem 0 1rem;
+  margin:0 2rem 0 1rem;
   font-weight: 600;
 }
 
-
+.mt{
+  margin-right:15rem ;
+}
 
 
 .left-nav {

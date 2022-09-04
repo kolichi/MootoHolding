@@ -5,8 +5,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import Tracking from "./pages/Tracking";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Tracking from "./Dashboard services/Tracking";
+import Dashboard from "./pages/Dashboard";
+import { Route, Routes } from "react-router-dom";
 import "./Styles/index.css";
 import UserContext from "./Components/userContext";
 import axios from "axios";
@@ -41,17 +42,18 @@ function App() {
       
       <Navbar />
 
-     <div className="toast">
+     {/* <div className="toast">
         {!!Contact_number && <div> logged in as {Contact_number} 
           <button onClick={() => Logout()}> LogOut </button>
          </div>}
         {!Contact_number && <div> NOT logged in as {Contact_number} </div>}
-      </div>
+      </div> */}
 
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Tracking" element={<Tracking />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/SignIn" element={<SignIn />} />
