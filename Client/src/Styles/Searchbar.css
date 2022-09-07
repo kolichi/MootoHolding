@@ -58,3 +58,9 @@
 .sbtn{
   width: 100%;
 }
+
+.modal-body img{
+
+  width: 4rem;
+  height: 4rem;
+}
