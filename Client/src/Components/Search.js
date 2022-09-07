@@ -80,14 +80,14 @@ const Search = () => {
 
               </div>
               <div className="modal-footer">
-                <button
+                {/* <button
                   type="button"
-                  className="btn btn-secondary"
+                  className="btn btn-warning"
                   data-bs-dismiss="modal"
                 >
                   Close
-                </button>
-                <button type="button" className="btn">
+                </button> */}
+                <button type="button" className="btn sbtn">
                   Procced 
                 </button>
               </div>
