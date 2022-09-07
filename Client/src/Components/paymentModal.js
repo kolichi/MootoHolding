@@ -1,39 +1,40 @@
-import React from "react";
-import "./Modal.css";
+import React from 'react'
 
-function Modal({ setOpenModal }) {
-  return (
-    <div className="modalBackground">
-      <div className="modalContainer">
-        <div className="titleCloseBtn">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-          >
-            X
-          </button>
-        </div>
-        <div className="title">
-          <h1>Are You Sure You Want to Continue?</h1>
-        </div>
-        <div className="body">
-          <p>The next page looks amazing. Hope you want to go there!</p>
-        </div>
-        <div className="footer">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-            id="cancelBtn"
-          >
-            Cancel
-          </button>
-          <button>Continue</button>
-        </div>
-      </div>
-    </div>
-  );
+import { Modal } from 'bootstrap'
+
+
+class PaymentModal extends React.Component () {
+
+
+constructor (){
+    super()
+    this.state = {
+        show:false
+    }
 }
 
-export default Modal;
+
+handleModal(){
+    this.setState({show:!this.state.show})
+}
+  rendor(){
+
+      return (
+        <div>
+
+
+ <Modal show={this.state.show} onHide ={() => {this.handleModal()}} >   
+  
+  <Modal.Header closeButton> Head part </Modal.Header>
+  <Modal.Body> Body part </Modal.Body>
+  <Modal.Footer> 
+   <button className="btn" onClick={() => {this.handleModal()}}  > Close </button>
+    </Modal.Footer>
+ 
+ </Modal>
+        </div>
+      )
+}
+
+}
+export default PaymentModal

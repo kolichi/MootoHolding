@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+
 import '../Styles/Searchbar.css'
 import Data from "../API/Api";
 import './ApiData'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.min'
 import 'animate.css';
 
 
+//payment gatddseway 
+// import FWH from '../Components/PaymentModal'
+// import  { FlutterWaveButton, useFlutterwave }  from "flutterwave-react-v3";
 
 
 
@@ -19,6 +24,7 @@ const searchText = (event) => {
     return Object.keys(item).some(key =>
       item[key].toString().toLowerCase().includes(filter.toString().toLowerCase()))
   });
+
 
   return (
     <section className="py-2 container">
@@ -35,6 +41,30 @@ const searchText = (event) => {
             />
           </div>
         </div>
+
+     
+     
+{/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> */}
+
+<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+        ...
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     
           
@@ -56,8 +86,10 @@ const searchText = (event) => {
     <h5 className="card-title">{item.title}</h5>
     <p className="card-text">{item.Price}</p>
 
-  <button type="button" className="btn sbtn ">Buy</button>
- 
+  <button type="button" className="btn sbtn" data-bs-toggle="modal" data-bs-target="#exampleModal" >Buy</button>
+
+
+
 
   </div>
 </div>
