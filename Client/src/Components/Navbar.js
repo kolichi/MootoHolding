@@ -3,6 +3,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../Styles/navStyles.css'
 import {useState} from 'react'
 import axios from "axios";
+import React from "react";
 
 export default function Navbar() {
   const [Contact_number, setNumber] = useState("");
@@ -17,17 +18,6 @@ export default function Navbar() {
   } 
 
   return (
-    // <nav className="nav">
-    //   <Link to="/" className="site-title" className="navbar-brand">
-    //     <img src={require("../logo.png")} alt="logo" />
-    //   </Link>
-    //   <ul>
-    //     <CustomLink to="/Categories">Categories</CustomLink>
-    // 
-    //     <CustomLink to="/about">About</CustomLink>
-    //     <CustomLink to="/SignIn">Sign In </CustomLink>
-    //   </ul>
-    // </nav>
 
 <nav className="navbar navbar-expand-lg navbar-light bg-light" value={{ Contact_number, setNumber }}>
   <div className="container-fluid">

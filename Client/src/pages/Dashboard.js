@@ -1,6 +1,6 @@
 import React from "react";
-import "bootstrap/js/dist/tab";
-import "bootstrap/js/src/tab";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 import "../Styles/dashboard.css";
 import Tracking from "../Dashboard services/Tracking";
 import Invoices from "../Dashboard services/invoices";

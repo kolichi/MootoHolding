@@ -1,17 +1,18 @@
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer.jsx";
-import Services from "./pages/Services";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Tracking from "./Dashboard services/Tracking";
 import Dashboard from "./pages/Dashboard";
+import Pay from './Components/PaymentModal';
 import { Route, Routes } from "react-router-dom";
 import "./Styles/index.css";
 import UserContext from "./Components/userContext";
 import axios from "axios";
-import { React, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import React from "react";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
 
   return (
+
     <UserContext.Provider value={{ Contact_number, setNumber }}>
 
       
@@ -54,7 +56,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Tracking" element={<Tracking />} />
           <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/Pay" element={<Pay />} />
           <Route path="/about" element={<About />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />

@@ -6,6 +6,8 @@ import "./ApiData";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 
+
+
 import Airtel from '../images/airtel.png'
 import Mtn from '../images/mtn.png'
 import Zamtel from '../images/zamtel.png'
@@ -13,8 +15,10 @@ import Visa from '../images/visa.webp'
 import MC from '../images/mastercard.png'
 
 //payment gatddseway
-// import FWH from '../Components/PaymentModal'
-// import  { FlutterWaveButton, useFlutterwave }  from "flutterwave-react-v3";
+ import Pay from '../Components/PaymentModal'
+import { Link } from "react-router-dom";
+
+
 
 const Search = () => {
   const [filter, setFilter] = useState("");
@@ -87,9 +91,11 @@ const Search = () => {
                 >
                   Close
                 </button> */}
+                <Link to='/Pay' className="btn sbtn"> 
                 <button type="button" className="btn sbtn">
                   Procced 
                 </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -102,7 +108,7 @@ const Search = () => {
               <div className="card-body" key={index}>
                 <h5 className="card-title">{item.title}</h5>
                 <p className="card-text">{item.Price}</p>
-
+                
                 <button
                   type="button"
                   className="btn sbtn"
@@ -111,6 +117,7 @@ const Search = () => {
                 >
                   Buy
                 </button>
+
               </div>
             </div>
           );
