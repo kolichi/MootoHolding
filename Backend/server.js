@@ -12,7 +12,14 @@ const secret = "secret123";
 await mongoose.connect("mongodb://localHost:27017/auth", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+}).then(() => {
+  console.log("Successfully connected to MongoDB Compass!");
+})
+.catch((error) => {
+  console.log("Unable to connect to MongoDB Compass!");
+  console.error(error);
 });
+
 
 const db = mongoose.connection;
 db.on("error", console.log);

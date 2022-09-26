@@ -2,24 +2,23 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../Styles/navStyles.css'
 import {useState} from 'react'
-import axios from "axios";
 import React from "react";
 
 export default function Navbar() {
-  const [Contact_number, setNumber] = useState("");
+  const [contact, setContact] = useState("");
 
-  function Logout (){
+  // function Logout (){
 
-    axios.post('http://logout:4000/logout', {}, {withCredentials:true})
+  //   axios.post('http://logout:3001/logout', {}, {withCredentials:true})
      
-    .then( () => setNumber('')
-    );
+  //   .then( () => setContact('')
+  //   );
   
-  } 
+  // } 
 
   return (
 
-<nav className="navbar navbar-expand-lg navbar-light bg-light" value={{ Contact_number, setNumber }}>
+<nav className="navbar navbar-expand-lg navbar-light bg-light" value={{ contact, setContact }}>
   <div className="container-fluid">
   <Link to="/" className="site-title navbar-brand">
          <img src={require("../logo.png")} alt="logo" />
@@ -31,17 +30,20 @@ export default function Navbar() {
       <div className="navbar-nav d-flex">
       <CustomLink to="/Dashboard" className="nav-link active" aria-current="page">Dashboard</CustomLink>
       <CustomLink to="/about" className="nav-link active" aria-current="page">About</CustomLink>  
-      <CustomLink to="/SignIn" className="nav-link active d-flex" aria-current="page">Sign In </CustomLink>   
-      <CustomLink to="/SignUp" className="nav-link active d-flex" aria-current="page">Sign Up </CustomLink>  
+      <CustomLink to="/login" className="nav-link active d-flex" aria-current="page">Login </CustomLink>   
+      <CustomLink to="/register" className="nav-link active d-flex" aria-current="page">Register </CustomLink>  
       </div>
 
 
       <div children="nav-link active d-flex left-nav">
         <div className="mt">   
-      {!!Contact_number && <div> logged in as {Contact_number} 
+      {/* {!!contact && <div> logged in as {contact} 
           <button onClick={() => Logout()}> LogOut </button>
          </div>}
-        {!Contact_number && <div> USER NOT lOGGED IN {Contact_number} </div>}
+        {!contact && <div> USER NOT lOGGED IN {contact} 
+        </div>} */}
+
+
       </div>
 
         </div>

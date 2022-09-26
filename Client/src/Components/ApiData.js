@@ -9,6 +9,7 @@ const Card = () =>
 
   const [filter, setFilter] = useState("");
 
+  //code bellow is not being used for now!!
 const searchText = (event) => {
     setFilter(event.target.value);
   };

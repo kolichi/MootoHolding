@@ -14,8 +14,8 @@ import Zamtel from '../images/zamtel.png'
 import Visa from '../images/visa.webp'
 import MC from '../images/mastercard.png'
 
-//payment gatddseway
- import Pay from '../Components/PaymentModal'
+//payment gateway
+
 import { Link } from "react-router-dom";
 
 

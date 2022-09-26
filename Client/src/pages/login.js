@@ -1,39 +1,47 @@
-import React, { useState, useContext } from "react";
+import React, { useState} from "react";
 import "../Styles/Auth.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import userContext from "../Components/userContext";
 import { Link } from "react-router-dom";
 
-function SignIn() {
-  const [Contact_number, setNumber] = useState("");
-  const [password, setPassword] = useState("");
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
-  const user = useContext(userContext);
+
+function login() {
+  const [contact, setContact] = useState("");
+  const [password, setPassword] = useState("");
+  const [login, setLogin] = useState(false);
+  
+  // set configurations
+  const configuration = {
+    method: "post",
+    url: "http://localhost:3001/login",
+    data: {
+      contact,
+      password,
+    },
+  };
 
   const handleLogn = (e) => {
     e.preventDefault();
 
-    const data = {
-      Contact_number,
-      password,
-    };
+   // make the API call
+   axios(configuration)
+   .then((result) => {
+     setLogin(true);
 
-    console.log(data);
-
-    axios
-      .post("http://localHost:4000/SignIn", data, { withCredentials: true })
-      .then((response) => {
-        user.setNumber(response.data.Contact_number);
-        setNumber("");
-        setPassword("");
-        if(response.status===200){
-          window.location.replace('/')
-        }else if(response.status===401){
-          console.log('incorrect credentials')
-         
-        }
-      });
+     // set the cookie
+     cookies.set("TOKEN", result.data.token, {
+       path: "/",
+     });
+     // redirect user to the auth page
+     window.location.href = "/Dashboard";
+     setLogin(true);
+   })
+   .catch((error) => {
+     error = new Error();
+   });
   };
  
 
@@ -41,13 +49,22 @@ function SignIn() {
     <div id="from" className="auth">
       <form
         className="row g-3 needs-validation"
-        // onSubmit={(e) => LoginUser(e)}
+        onSubmit={(e) => handleLogn(e)}
         noValidate
       >
         <div className="site-title">
           {" "}
           <img src={require("../logo.png")} alt="logo" />{" "}
         </div>
+
+
+        {/* display success message */}
+        {login ? (
+          <p className="text-success">You Are Logged in Successfully</p>
+        ) : (
+          <p className="text-danger">You Are Not Logged in</p>
+        )}
+
 
         <div className="col-md-5">
           <label htmlFor="validationCustom01" className="form-label">
@@ -58,10 +75,10 @@ function SignIn() {
             type="number"
             className="form-control"
             id="validationCustom01"
-            name="Contact_number"
+            name="contact"
             required
-            onChange={(e) => setNumber(e.target.value)}
-            value={Contact_number}
+            onChange={(e) => setContact(e.target.value)}
+            value={contact}
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -103,12 +120,12 @@ function SignIn() {
             Submit form
           </button>
           <hr />
-          <Link to="/SignUp">
-            <button className="btn ">Sign Up</button>
+          <Link to="/register">
+            <button className="btn ">Register</button>
           </Link>
         </div>
       </form>
     </div>
   );
 }
-export default SignIn;
+export default login;

@@ -1,53 +1,65 @@
-import React, { useState, useContext,  } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import "../Styles/Auth.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import userContext from "../Components/userContext";
 
-function SignUp() {
+const register = () => {
 
+  const [first_name, setFname] = useState("");
+  const [last_name, setLname] = useState("");
+  const [contact, setContact] = useState("");
+  const [password, setPassword] = useState("");
+  const [register, setRegister] = useState(false);
 
-const [first_name,setFirstName] = useState('') 
-const [last_name,setLastName] = useState('') 
-const [Contact_number,setNumber] = useState('') 
-const [password,setPassword] = useState('') 
-
-const user = useContext(userContext);
-
-
-function submitForm(e) {
-e.preventDefault(); 
-
-const data = {
-  first_name,
-  last_name,
-  Contact_number,
-  password
+const configuration = {
+  method: "post",
+  url: "http://localhost:3001/register",
+  data: {
+    first_name,
+    last_name,
+    contact,
+    password,
+  },
 };
 
-console.log(data)
 
-axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
-
-.then(response =>{
-  user.setNumber(response.data.Contact_number);
+const handleSubmit = (e) => {
+e.preventDefault(); 
    
-  setFirstName('');
-  setLastName('');
-  setNumber('');
-  setPassword('');
+// set configurations
+     
+  // make the API call
+  axios(configuration)
+  .then((result) => {
+    setRegister(true);
+  })
+  .catch((error) => {
+    error = new Error();
+  });
+  };
 
-});
-}
 
-  return (
+
+
+  return ( 
     <div className="auth">
-      <form className="row g-3 needs-validation" action="" onSubmit={e => submitForm(e)} noValidate>
+      <form className="row g-3 needs-validation" action="" onSubmit={(e)=>handleSubmit(e)} noValidate>
         <div className="site-title">
           {" "}
           <img src={require("../logo.png")} alt="logo" />{" "}
         </div>
+
+
+         {/* display success message */}
+      {register ? (
+         <p className="text-success" id="alert">You Are Registered Successfully</p>
+        ) : (
+          <p className="text-danger">You Are Not Registered</p>
+        )}
+
+
+
 
         <div className="col-md-4">
           <label htmlFor="validationCustom01" className="form-label">
@@ -55,11 +67,11 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
             First Name
           </label>
           <input
-            type="text"
+            type="String"
             className="form-control"
             id="validationCustom01"
             name ="first_name"
-            onChange={e=> setFirstName(e.target.value) } 
+            onChange={(e)=> setFname(e.target.value) } 
             value={first_name}
             required
           />
@@ -72,12 +84,12 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
             Last Name{" "}
           </label>
           <input
-            type="text"
+            type="String"
             className="form-control"
             id="validationCustom08"
             name ="last_name"
             required
-            onChange={e=> setLastName(e.target.value) } 
+            onChange={(e)=> setLname(e.target.value) } 
             value={last_name}
           
           />
@@ -93,10 +105,10 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
             type="number"
             className="form-control"
             id="validationCustom03"
-            name ="Contact_number"
+            name ="contact"
             required
-            onChange={e=> setNumber(e.target.value) } 
-            value={Contact_number}
+            onChange={(e)=> setContact(e.target.value) } 
+            value={contact}
          
           />
           <div className="valid-feedback">Looks good!</div>
@@ -111,7 +123,7 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
             id="validationCustom04"
             name ="password"
             required
-            onChange={e=> setPassword(e.target.value) } 
+            onChange={(e)=> setPassword(e.target.value) } 
             value={password}
            
           />
@@ -142,13 +154,13 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
           </button>
           <hr />
           <p> Already have an Account?</p>
-          <Link to="/SignIn">
+          <Link to="/login">
 
 
 
           <button className="btn " type=""  >
             {" "}
-            Sign in
+            Login 
           </button>
           </Link>
         
@@ -157,4 +169,4 @@ axios.post('http://localHost:4000/SignUp', data, {withCredentials:true})
     </div>
   );
 };
-export default SignUp;
+export default register;
