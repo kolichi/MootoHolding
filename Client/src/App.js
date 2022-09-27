@@ -23,8 +23,6 @@ import "./Styles/index.css";
 function App() {
   
   return (
-
-    // <UserContext.Provider value={{ Contact_number, setNumber }}>
 <> 
       
       <Navbar />
@@ -39,10 +37,11 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </div>
+
       <Footer />
    
       </>
-    // </UserContext.Provider>
+    
   );
 }
 

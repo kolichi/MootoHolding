@@ -1,24 +1,18 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import "../Styles/Searchbar.css";
 import Data from "../API/Api";
 import "./ApiData";
+
+import "../Styles/Searchbar.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 
-
-
-import Airtel from '../images/airtel.png'
-import Mtn from '../images/mtn.png'
-import Zamtel from '../images/zamtel.png'
-import Visa from '../images/visa.webp'
-import MC from '../images/mastercard.png'
-
-//payment gateway
-
-import { Link } from "react-router-dom";
-
-
+import Airtel from "../images/airtel.png";
+import Mtn from "../images/mtn.png";
+import Zamtel from "../images/zamtel.png";
+import Visa from "../images/visa.webp";
+import MC from "../images/mastercard.png";
 
 const Search = () => {
   const [filter, setFilter] = useState("");
@@ -74,14 +68,12 @@ const Search = () => {
                 ></button>
               </div>
               <div className="modal-body">
-                      <p> We Accept</p>
-              <img src={Airtel} alt=""/> 
-              <img src={Mtn} alt=""/> 
-              <img src={Zamtel} alt=""/> 
-              <img src={MC} alt=""/> 
-              <img src={Visa} alt=""/> 
-
-
+                <p> We Accept</p>
+                <img src={Airtel} alt="" />
+                <img src={Mtn} alt="" />
+                <img src={Zamtel} alt="" />
+                <img src={MC} alt="" />
+                <img src={Visa} alt="" />
               </div>
               <div className="modal-footer">
                 {/* <button
@@ -91,10 +83,10 @@ const Search = () => {
                 >
                   Close
                 </button> */}
-                <Link to='/Pay' className="btn sbtn"> 
-                <button type="button" className="btn sbtn">
-                  Procced 
-                </button>
+                <Link to="/Pay" className="btn sbtn">
+                  <button type="button" className="btn sbtn">
+                    Procced
+                  </button>
                 </Link>
               </div>
             </div>
@@ -108,7 +100,7 @@ const Search = () => {
               <div className="card-body" key={index}>
                 <h5 className="card-title">{item.title}</h5>
                 <p className="card-text">{item.Price}</p>
-                
+
                 <button
                   type="button"
                   className="btn sbtn"
@@ -117,7 +109,6 @@ const Search = () => {
                 >
                   Buy
                 </button>
-
               </div>
             </div>
           );
