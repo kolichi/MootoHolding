@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+
+import Dash from './pages/dashBoard';
+
 import axios from "axios";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+
 
 // get token generated on login
 const token = cookies.get("TOKEN");
@@ -42,16 +46,8 @@ export default function AuthComponent() {
   }
 
   return (
-    <div className="text-center">
-      <h1>Auth Component</h1>
-
-      {/* displaying our message from our API call */}
-      <h3 className="text-danger">{message}</h3>
-
-      {/* logout */}
-      <Button type="submit" variant="danger" onClick={() => logout()}>
-        Logout
-      </Button>
-    </div>
+       <>
+       <Dash/>
+       </>
   );
 }

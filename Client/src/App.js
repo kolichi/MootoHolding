@@ -1,47 +1,49 @@
-
 //libraries
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-
-//components 
-import Pay from './Components/PaymentModal';
-import Navbar from "./Components/Navbar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//components
+import Pay from "./Components/PaymentModal";
 import Footer from "./Components/Footer.jsx";
+import Nav2 from "./Components/Nav";
+import Navbar from "./Components/Navbar";
 
 //pages
-import Home from "./pages/Home";
-import About from "./pages/About";
+import Home from "./pages/home";
+import About from "./pages/about";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/dashBoard";
+import ProtectedRoutes from "./ProtectedRoutes";
+import Protected from './Protected'
 
-//other imports 
+//other imports
 import "./Styles/index.css";
-
-
+import AuthComponent from "./AuthComponent";
+import Nav from 'react-bootstrap/Nav';
 
 function App() {
-  
   return (
-<> 
-      
-      <Navbar />
+    <Router>
 
       <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/Pay" element={<Pay />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </div>
+        <Switch> 
+      <Nav2 /> 
 
+         {/* <Route element={<ProtectedRoutes/>} >
+         <Route path="/Dashboard" element={<Dashboard />} />
+         </Route> */}
+         
+          <Route path="/" component={Home } />
+          <Route path="/Pay" component={Pay } />
+          <Route path="/about" component={About } />
+          <Route path="/login" component={Login } />
+          <Route path="/register" component={Register } />
+
+        </Switch>
+  
+      </div>
       <Footer />
-   
-      </>
-    
+    </Router>
   );
 }
 
