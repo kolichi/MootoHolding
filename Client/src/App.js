@@ -44,6 +44,7 @@ function App() {
         <ProtectedRoutes path="/Dashboard" component={Dashboard} />
       </Switch>
     </Container>
+    <Footer/>
           </>
   
   );
