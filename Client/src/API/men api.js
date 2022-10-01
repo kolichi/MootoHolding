@@ -14,7 +14,7 @@ const data = {
         {
         id: 1,
         img: img1,
-        title: 'juma',
+        title: 'blog1',
         Price: 'k100'
     },
 

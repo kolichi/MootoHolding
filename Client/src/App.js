@@ -1,49 +1,51 @@
-//libraries
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-//components
-import Pay from "./Components/PaymentModal";
-import Footer from "./Components/Footer.jsx";
+import { Route, Switch } from "react-router-dom";
+import { Container} from "react-bootstrap";
+import Dashboard from "./pages/dashBoard";
+import FreeComponent from "./FreeComponent";
+import ProtectedRoutes from "./ProtectedRoutes";
 import Nav2 from "./Components/Nav";
-import Navbar from "./Components/Navbar";
+import Footer from './Components/Footer'
+// import Footer from "./Components/Footer.jsx";
 
-//pages
 import Home from "./pages/home";
 import About from "./pages/about";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import Dashboard from "./pages/dashBoard";
-import ProtectedRoutes from "./ProtectedRoutes";
-import Protected from './Protected'
-
-//other imports
-import "./Styles/index.css";
-import AuthComponent from "./AuthComponent";
-import Nav from 'react-bootstrap/Nav';
+import Pay from "./Components/PaymentModal";
 
 function App() {
   return (
-    <Router>
+    <>
+      <Nav2/>
+    <Container>
+      {/* <Row>
+        <Col className="text-center">
+          <h1>React Authentication Mooto </h1>
 
-      <div className="container">
-        <Switch> 
-      <Nav2 /> 
+          <section id="navigation">
+            <a href="/">Home</a>
+            <a href="/free">Free Component</a>
+            <a href="/auth">Auth Component</a>
+            </section>
+            </Col>
+          </Row> */}
 
-         {/* <Route element={<ProtectedRoutes/>} >
-         <Route path="/Dashboard" element={<Dashboard />} />
-         </Route> */}
-         
-          <Route path="/" component={Home } />
+
+      {/* create routes here */}
+
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/free" component={FreeComponent} />
           <Route path="/Pay" component={Pay } />
           <Route path="/about" component={About } />
           <Route path="/login" component={Login } />
           <Route path="/register" component={Register } />
-
-        </Switch>
+        <ProtectedRoutes path="/Dashboard" component={Dashboard} />
+      </Switch>
+    </Container>
+          </>
   
-      </div>
-      <Footer />
-    </Router>
   );
 }
 
