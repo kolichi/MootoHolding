@@ -5,7 +5,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 import "../Styles/dashboard.css";
 import Tracking from "../Dashboard services/Tracking";
-import Invoices from "../Dashboard services/invoices";
+import Orders from "../Dashboard services/Orders";
 import AccountInfo from "../Dashboard services/accountInfo";
 import Adress from "../Dashboard services/Adress";
 
@@ -16,49 +16,47 @@ const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
 const Dashboard = () => {
- // set an initial state for the message we will receive after the API call
- const [message, setMessage] = useState("");
+  // set an initial state for the message we will receive after the API call
+  const [message, setMessage] = useState("");
 
- // useEffect automatically executes once the page is fully loaded
- useEffect(() => {
-   // set configurations for the API call here
-   const configuration = {
-     method: "get",
-     url: "localhost:3001/auth-endpoint",
-     headers: {
-       Authorization: `Bearer ${token}`,
-     },
-   };
+  // useEffect automatically executes once the page is fully loaded
+  useEffect(() => {
+    // set configurations for the API call here
+    const configuration = {
+      method: "get",
+      url: "localhost:3001/auth-endpoint",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-   // make the API call
-   axios(configuration)
-     .then((result) => {
-       // assign the message in our result to the message we initialized above
-       setMessage(result.data.message);
-     })
-     .catch((error) => {
-       error = new Error();
-     });
- }, []);
+    // make the API call
+    axios(configuration)
+      .then((result) => {
+        // assign the message in our result to the message we initialized above
+        setMessage(result.data.message);
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+  }, []);
 
- // logout
- const logout = () => {
-   // destroy the cookie
-   cookies.remove("TOKEN", { path: "/" });
-   // redirect user to the landing page
-   window.location.href = "/";
- }
-
+  // logout
+  const logout = () => {
+    // destroy the cookie
+    cookies.remove("TOKEN", { path: "/" });
+    // redirect user to the landing page
+    window.location.href = "/";
+  };
 
   return (
     <div>
-
-     <img src={require('../images/icon.jpg')} className='tablogo' alt="" />
-     <br/> 
-     <p>Welcome </p>
-     <br/> 
-     <hr/> 
-     <br/> 
+      <img src={require("../images/icon.jpg")} className="tablogo" alt="" />
+      <br />
+      <p>Welcome </p>
+      <br />
+      <hr />
+      <br />
       <div className="d-flex align-items-start">
         <div
           className="nav flex-column nav-pills me-3"
@@ -90,7 +88,7 @@ const Dashboard = () => {
             aria-selected="false"
           >
             {" "}
-            Invoices{" "}
+            Orders{" "}
           </button>
           <button
             className="nav-link tb"
@@ -137,7 +135,7 @@ const Dashboard = () => {
             role="tabpanel"
             aria-labelledby="v-pills-accountInfo-tab"
           >
-            <AccountInfo/>
+            <AccountInfo />
           </div>
           <div
             className="tab-pane fade"
@@ -145,8 +143,7 @@ const Dashboard = () => {
             role="tabpanel"
             aria-labelledby="v-pills-invoice-tab"
           >
-            <Invoices/>
-
+            <Orders />
           </div>
           <div
             className="tab-pane fade"
@@ -154,7 +151,7 @@ const Dashboard = () => {
             role="tabpanel"
             aria-labelledby="v-pills-adress-tab"
           >
-            <Adress/>
+            <Adress />
           </div>
           <div
             className="tab-pane fade"
@@ -162,7 +159,7 @@ const Dashboard = () => {
             role="tabpanel"
             aria-labelledby="v-pills-tracking-tab"
           >
-            <Tracking/>
+            <Tracking />
           </div>
         </div>
       </div>

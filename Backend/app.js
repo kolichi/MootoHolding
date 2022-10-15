@@ -9,10 +9,12 @@ const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
 const auth = require("./auth");
 
+const morgan = require("morgan");
+const path = require("path");
+const { Cursor } = require("mongoose");
+
 // execute database connection
 dbConnect();
-
-
 
 // Curb Cores Error by adding a header here
 app.use((req, res, next) => {
@@ -45,8 +47,8 @@ app.post("/register", (request, response) => {
     .then((hashedPassword) => {
       // create a new user instance and collect the data
       const user = new User({
-        first_name:request.body.first_name,
-        last_name:request.body.last_name,
+        first_name: request.body.first_name,
+        last_name: request.body.last_name,
         contact: request.body.contact,
         password: hashedPassword,
       });
@@ -80,10 +82,10 @@ app.post("/register", (request, response) => {
 
 // login endpoint
 app.post("/login", (request, response) => {
-  // check if email exists
+  // check if contact exists
   User.findOne({ contact: request.body.contact })
 
-    // if email exists
+    // if contact exists
     .then((user) => {
       // compare the password entered and the hashed password found
       bcrypt
@@ -91,9 +93,8 @@ app.post("/login", (request, response) => {
 
         // if the passwords match
         .then((passwordCheck) => {
-
           // check if password matches
-          if(!passwordCheck) {
+          if (!passwordCheck) {
             return response.status(400).send({
               message: "Passwords does not match",
               error,
@@ -134,6 +135,17 @@ app.post("/login", (request, response) => {
     });
 });
 
+// HTTP request logger
+app.use(morgan("tiny"));
+
+app.get("/orders", function (request, response, next) {
+  console.log("Order Data");
+  User.find({}, function (err, result) {
+    if (err) return handleError(err);
+    response.json({ result });
+  });
+});
+
 // free endpoint
 app.get("/free-endpoint", (request, response) => {
   response.json({ message: "You are free to access me anytime" });
@@ -145,5 +157,3 @@ app.get("/auth-endpoint", auth, (request, response) => {
 });
 
 module.exports = app;
-
-

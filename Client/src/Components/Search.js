@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import Data from "../API/Api";
+import Data from "../api/api";
 import "./ApiData";
 
 import "../Styles/Searchbar.css";
@@ -50,7 +50,7 @@ const Search = () => {
         <div
           className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
@@ -76,15 +76,12 @@ const Search = () => {
                 <img src={Visa} alt="" />
               </div>
               <div className="modal-footer">
-                {/* <button
-                  type="button"
-                  className="btn btn-warning"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button> */}
                 <Link to="/Pay" className="btn sbtn">
-                  <button type="button" className="btn sbtn">
+                  <button
+                    type="button"
+                    className="btn sbtn"
+                    data-bs-dismiss="modal"
+                  >
                     Procced
                   </button>
                 </Link>
